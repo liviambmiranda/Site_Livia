@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lívia Maria Bettini de Miranda - Pesquisadora</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .profile-info h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .profile-info p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .academic-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .academic-links a {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+
+        .academic-links a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 20px 30px;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            background: #f8f9fa;
+            border-bottom-color: #3498db;
+        }
+
+        main {
+            background: white;
+            margin: 0;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: #3498db;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .education-item,
+        .experience-item,
+        .publication-item {
+            background: #f8f9fa;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .education-item:hover,
+        .experience-item:hover,
+        .publication-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .period {
+            color: #7f8c8d;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+
+        .institution {
+            color: #34495e;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+
+        .advisor {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        .publication-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .publication-details {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+
+        .doi {
+            color: #3498db;
+            font-size: 0.85em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 25px;
+            text-align: center;
+            border-radius: 8px;
+            border-top: 4px solid #3498db;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .news-item {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .news-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .news-date {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .news-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .news-content {
+            color: #7f8c8d;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .news-link {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .news-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-info h1 {
+                font-size: 2em;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links li a {
+                padding: 15px 20px;
+            }
+
+            section {
+                padding: 40px 0;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile-section">
+                <img src="foto.jpeg" alt="Lívia Maria Bettini de Miranda" class="profile-image">
+                <div class="profile-info">
+                    <h1>Lívia Maria Bettini de Miranda</h1>
+                    <p>Doutoranda em Engenharia de Produção</p>
+                    <p>Universidade de São Paulo - EESC</p>
+                    <div class="academic-links">
+                        <a href="https://orcid.org/0009-0003-6770-5099" target="_blank">ORCID</a>
+                        <a href="http://lattes.cnpq.br/2637617724612413" target="_blank">Lattes</a>
+                        <a href="https://scholar.google.com/citations?user=9-grDd0AAAAJ" target="_blank">Google Scholar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#formacao">Formação</a></li>
+                    <li><a href="#experiencia">Experiência</a></li>
+                    <li><a href="#publicacoes">Publicações</a></li>
+                    <li><a href="#indicadores">Indicadores</a></li>
+                    <li><a href="#noticias">Notícias</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="sobre">
+            <div class="container">
+                <h2>Sobre</h2>
+                <p style="text-align: center; font-size: 1.1em; max-width: 800px; margin: 0 auto; color: #7f8c8d;">
+                    Pesquisadora especializada em blockchain como tecnologia de governança digital para organizar esforços colaborativos em ambientes interorganizacionais, com foco em Empresas Virtuais. Utilizo a abordagem de Design Science Research para investigar aspectos teóricos dos mecanismos de governança do blockchain e sua aplicação prática através de provas de conceito.
+                </p>
+            </div>
+        </section>
+
+        <section id="formacao">
+            <div class="container">
+                <h2>Formação Acadêmica</h2>
+                
+                <div class="education-item">
+                    <div class="period">2024 - presente</div>
+                    <h3>Doutoranda em Engenharia de Produção</h3>
+                    <div class="institution">Escola de Engenharia de São Carlos - Universidade de São Paulo</div>
+                    <div class="advisor">Orientador: Prof. Dr. Fábio Müller Guerrini</div>
+                    <div class="advisor">Coorientador: Prof. Dr. Jó Ueyama</div>
+                </div>
+
+                <div class="education-item">
+                    <div class="period">2023 - 2024</div>
+                    <h3>Mestrado em Engenharia de Produção</h3>
+                    <div class="institution">Escola de Engenharia de São Carlos - Universidade de São Paulo</div>
+                    <div class="advisor">Orientador: Prof. Dr. Fábio Müller Guerrini</div>
+                </div>
+
+                <div class="education-item">
+                    <div class="period">2017 - 2022</div>
+                    <h3>Graduação em Engenharia de Materiais e Manufatura</h3>
+                    <div class="institution">Escola de Engenharia de São Carlos - Universidade de São Paulo</div>
+                    <div class="advisor">Orientador: Prof. Dr. Fábio Müller Guerrini</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experiencia">
+            <div class="container">
+                <h2>Experiência</h2>
+                
+                <div class="experience-item">
+                    <div class="period">Fevereiro 2024 - Junho 2024</div>
+                    <h3>Estágio Supervisionado em Docência (PAE)</h3>
+                    <div class="institution">Departamento de Engenharia de Produção - EESC-USP</div>
+                    <p>Desenvolvimento de atividades didáticas na disciplina "SEP0500 - Organização: conceitos, metodologias e modelagem" para alunos de graduação. Carga horária total: 120 horas.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="publicacoes">
+            <div class="container">
+                <h2>Publicações</h2>
+                
+                <h3>Artigos em Periódicos</h3>
+                
+                <div class="publication-item">
+                    <div class="publication-title">Inter‑organisational Collaboration through Blockchain Governance and Smart Contracts: A Design Science Research Approach</div>
+                    <div class="publication-details">de Miranda, L. M. B., Garcia, R. D., Ramachandran, G. S., Ueyama, J. & Guerrini, F. M. (2025)</div>
+                    <div class="publication-details"><em>International Journal of Production Research</em></div>
+                    <div class="doi">DOI: 10.1080/00207543.2025.2514727</div>
+                </div>
+
+                <div class="publication-item">
+                    <div class="publication-title">Blockchain in inter‑organizational collaboration: A privacy‑preserving voting system for collective decision‑making</div>
+                    <div class="publication-details">de Miranda, L. M. B., Garcia, R. D., Ramachandran, G. S., Ueyama, J. & Guerrini, F. M. (2024)</div>
+                    <div class="publication-details"><em>Journal of Information Security and Applications</em>, 85, 103837</div>
+                    <div class="doi">DOI: 10.1016/j.jisa.2024.103837</div>
+                </div>
+
+                <h3>Conferências e Workshops</h3>
+                
+                <div class="publication-item">
+                    <div class="publication-title">A Blockchain‑based Reputation System for Trust Management in Collaborative Multi‑Stakeholder Settings</div>
+                    <div class="publication-details">de Miranda, L. M. B., Garcia, R. D., Ramachandran, G. S., Ueyama, J. & Guerrini, F. M. (2024)</div>
+                    <div class="publication-details"><em>Workshop em Blockchain: Teoria, Tecnologias e Aplicações (WBLOCKCHAIN)</em>, Niterói/RJ</div>
+                    <div class="doi">DOI: 10.5753/wblockchain.2024.3258</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="indicadores">
+            <div class="container">
+                <h2>Indicadores Quantitativos</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">2</span>
+                        <div class="stat-label">Artigos em Periódicos</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">1</span>
+                        <div class="stat-label">Artigos em Conferências</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">1</span>
+                        <div class="stat-label">Dissertação Defendida</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">3</span>
+                        <div class="stat-label">Citações (Google Scholar)</div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="noticias">
+            <div class="container">
+                <h2>Últimas Notícias e Reconhecimentos</h2>
+                <div class="news-grid">
+                    <div class="news-item">
+                        <div class="news-date">2025</div>
+                        <div class="news-title">Indicação para Prêmio ABEPRO</div>
+                        <div class="news-content">
+                            Dissertação de mestrado indicada pelo Programa de Pós-Graduação em Engenharia de Produção da EESC-USP para concorrer ao Prêmio ABEPRO na categoria Mestrado Acadêmico (Edital 2025).
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-date">2024</div>
+                        <div class="news-title">Certificado "Discente-Trabalho Destaque do Programa"</div>
+                        <div class="news-content">
+                            Distinção acadêmica recebida no IX EPPGEP (2024) da ANPEPRO na categoria de Mestrado Acadêmico, por apresentação sobre "Blockchain Governance in Creating Virtual Enterprises: An Enterprise Modeling Approach".
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-date">2025</div>
+                        <div class="news-title">Divulgação no Jornal da USP</div>
+                        <div class="news-content">
+                            Pesquisa de mestrado destacada no Jornal da USP, evidenciando a aplicação da tecnologia blockchain em esforços colaborativos entre empresas.
+                        </div>
+                        <a href="https://jornal.usp.br/ciencias/tecnologia-blockchain-ajuda-a-organizar-esforcos-colaborativos-entre-empresas/" class="news-link" target="_blank">Ver matéria →</a>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-date">2025</div>
+                        <div class="news-title">Divulgação no Portal da EESC</div>
+                        <div class="news-content">
+                            Pesquisa de mestrado destacada no Portal da EESC, evidenciando a contribuição da pesquisa.
+                        </div>
+                        <a href="https://eesc.usp.br/noticias/comunicados_s.php?guid=tecnologia-blockchain-ajuda-a-regular-e-organizar-esforcos-colaborativos-entre-empresas&termid=todos" class="news-link" target="_blank">Ver matéria →</a>
+                    </div>
+
+
+                    <div class="news-item">
+                        <div class="news-date">2025</div>
+                        <div class="news-title">Apresentação no 1º Encontro da Pós-Graduação EESC-USP</div>
+                        <div class="news-content">
+                            Trabalho apresentado como pôster no 1º Encontro da Pós-Graduação da EESC-USP com o tema "Construindo o Futuro da Pós-Graduação: Desafios e Oportunidades".
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-date">2025</div>
+                        <div class="news-title">Publicação no International Journal of Production Research</div>
+                        <div class="news-content">
+                            Artigo publicado apresentando o artefato de pesquisa resultante do mestrado e contribuindo para a pesquisa em colaboração interorganizacional através da governança de blockchain.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lívia Maria Bettini de Miranda.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navegação suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Atualizar link ativo na navegação
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
