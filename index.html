@@ -29,6 +29,45 @@
             color: white;
             padding: 60px 0;
             text-align: center;
+            position: relative;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .language-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9em;
+        }
+
+        .language-btn:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .language-btn.active {
+            background: rgba(255,255,255,0.9);
+            color: #2c3e50;
+            border-color: white;
+        }
+
+        .flag {
+            font-size: 1.2em;
         }
 
         .profile-section {
@@ -46,6 +85,12 @@
             border: 5px solid white;
             object-fit: cover;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9em;
         }
 
         .profile-info h1 {
@@ -297,6 +342,12 @@
         }
 
         @media (max-width: 768px) {
+            .language-switcher {
+                position: static;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+
             .profile-section {
                 flex-direction: column;
                 text-align: center;
@@ -336,12 +387,22 @@
 <body>
     <header>
         <div class="container">
+            <div class="language-switcher">
+                <button class="language-btn active" onclick="switchLanguage('pt')" id="btn-pt">
+                    <span class="flag">🇧🇷</span>
+                    <span>PT</span>
+                </button>
+                <button class="language-btn" onclick="switchLanguage('en')" id="btn-en">
+                    <span class="flag">🇺🇸</span>
+                    <span>EN</span>
+                </button>
+            </div>
             <div class="profile-section">
-                <img src="foto.jpeg" alt="Lívia Maria Bettini de Miranda" class="profile-image">
+                <div class="profile-image">Profile Image</div>
                 <div class="profile-info">
                     <h1>Lívia Maria Bettini de Miranda</h1>
-                    <p>Doutoranda em Engenharia de Produção</p>
-                    <p>Universidade de São Paulo - EESC</p>
+                    <p data-pt="Doutoranda em Engenharia de Produção" data-en="Ph.D. Student in Production Engineering">Doutoranda em Engenharia de Produção</p>
+                    <p data-pt="Universidade de São Paulo - EESC" data-en="University of São Paulo - EESC">Universidade de São Paulo - EESC</p>
                     <div class="academic-links">
                         <a href="https://orcid.org/0009-0003-6770-5099" target="_blank">ORCID</a>
                         <a href="http://lattes.cnpq.br/2637617724612413" target="_blank">Lattes</a>
@@ -356,12 +417,12 @@
         <div class="container">
             <div class="nav-container">
                 <ul class="nav-links">
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#formacao">Formação</a></li>
-                    <li><a href="#experiencia">Experiência</a></li>
-                    <li><a href="#publicacoes">Publicações</a></li>
-                    <li><a href="#indicadores">Indicadores</a></li>
-                    <li><a href="#noticias">Notícias</a></li>
+                    <li><a href="#sobre" data-pt="Sobre" data-en="About">Sobre</a></li>
+                    <li><a href="#formacao" data-pt="Formação" data-en="Education">Formação</a></li>
+                    <li><a href="#experiencia" data-pt="Experiência" data-en="Experience">Experiência</a></li>
+                    <li><a href="#publicacoes" data-pt="Publicações" data-en="Publications">Publicações</a></li>
+                    <li><a href="#indicadores" data-pt="Indicadores" data-en="Metrics">Indicadores</a></li>
+                    <li><a href="#noticias" data-pt="Notícias" data-en="News">Notícias</a></li>
                 </ul>
             </div>
         </div>
@@ -370,8 +431,10 @@
     <main>
         <section id="sobre">
             <div class="container">
-                <h2>Sobre</h2>
-                <p style="text-align: center; font-size: 1.1em; max-width: 800px; margin: 0 auto; color: #7f8c8d;">
+                <h2 data-pt="Sobre" data-en="About">Sobre</h2>
+                <p style="text-align: center; font-size: 1.1em; max-width: 800px; margin: 0 auto; color: #7f8c8d;" 
+                   data-pt="Lívia Maria Bettini de Miranda é mestre pelo Departamento de Engenharia de Produção da Escola de Engenharia de São Carlos da Universidade de São Paulo (EESC-USP). Sua pesquisa se concentra em tecnologia blockchain, Design Science Research e Redes Colaborativas." 
+                   data-en="Lívia Maria Bettini de Miranda holds a Master's degree from the Department of Production Engineering at the School of Engineering of São Carlos, University of São Paulo (EESC-USP). Her research focuses on blockchain technology, Design Science Research, and Collaborative Networks.">
                     Lívia Maria Bettini de Miranda é mestre pelo Departamento de Engenharia de Produção da Escola de Engenharia de São Carlos da Universidade de São Paulo (EESC-USP). Sua pesquisa se concentra em tecnologia blockchain, Design Science Research e Redes Colaborativas.
                 </p>
             </div>
@@ -379,51 +442,60 @@
 
         <section id="formacao">
             <div class="container">
-                <h2>Formação Acadêmica</h2>
+                <h2 data-pt="Formação Acadêmica" data-en="Academic Background">Formação Acadêmica</h2>
                 
                 <div class="education-item">
-                    <div class="period">2024 - presente</div>
-                    <h3>Doutoranda em Engenharia de Produção</h3>
-                    <div class="institution">Escola de Engenharia de São Carlos - Universidade de São Paulo</div>
-                    <div class="advisor">Orientador: Prof. Dr. Fábio Müller Guerrini</div>
-                    <div class="advisor">Coorientador: Prof. Dr. Jó Ueyama</div>
+                    <div class="period" data-pt="2024 - presente" data-en="2024 - present">2024 - presente</div>
+                    <h3 data-pt="Doutoranda em Engenharia de Produção" data-en="Ph.D. Student in Production Engineering">Doutoranda em Engenharia de Produção</h3>
+                    <div class="institution" data-pt="Escola de Engenharia de São Carlos - Universidade de São Paulo" data-en="School of Engineering of São Carlos - University of São Paulo">Escola de Engenharia de São Carlos - Universidade de São Paulo</div>
+                    <div class="advisor" data-pt="Orientador: Prof. Dr. Fábio Müller Guerrini" data-en="Advisor: Prof. Dr. Fábio Müller Guerrini">Orientador: Prof. Dr. Fábio Müller Guerrini</div>
+                    <div class="advisor" data-pt="Coorientador: Prof. Dr. Jó Ueyama" data-en="Co-advisor: Prof. Dr. Jó Ueyama">Coorientador: Prof. Dr. Jó Ueyama</div>
                 </div>
 
                 <div class="education-item">
                     <div class="period">2023 - 2024</div>
-                    <h3>Mestrado em Engenharia de Produção</h3>
-                    <div class="institution">Escola de Engenharia de São Carlos - Universidade de São Paulo</div>
-                    <div class="advisor">Orientador: Prof. Dr. Fábio Müller Guerrini</div>
+                    <h3 data-pt="Mestrado em Engenharia de Produção" data-en="Master's in Production Engineering">Mestrado em Engenharia de Produção</h3>
+                    <div class="institution" data-pt="Escola de Engenharia de São Carlos - Universidade de São Paulo" data-en="School of Engineering of São Carlos - University of São Paulo">Escola de Engenharia de São Carlos - Universidade de São Paulo</div>
+                    <div class="advisor" data-pt="Orientador: Prof. Dr. Fábio Müller Guerrini" data-en="Advisor: Prof. Dr. Fábio Müller Guerrini">Orientador: Prof. Dr. Fábio Müller Guerrini</div>
                 </div>
 
                 <div class="education-item">
                     <div class="period">2017 - 2022</div>
-                    <h3>Graduação em Engenharia de Materiais e Manufatura</h3>
-                    <div class="institution">Escola de Engenharia de São Carlos - Universidade de São Paulo</div>
-                    <div class="advisor">Orientador: Prof. Dr. Fábio Müller Guerrini</div>
+                    <h3 data-pt="Graduação em Engenharia de Materiais e Manufatura" data-en="Bachelor's in Materials and Manufacturing Engineering">Graduação em Engenharia de Materiais e Manufatura</h3>
+                    <div class="institution" data-pt="Escola de Engenharia de São Carlos - Universidade de São Paulo" data-en="School of Engineering of São Carlos - University of São Paulo">Escola de Engenharia de São Carlos - Universidade de São Paulo</div>
+                    <div class="advisor" data-pt="Orientador: Prof. Dr. Fábio Müller Guerrini" data-en="Advisor: Prof. Dr. Fábio Müller Guerrini">Orientador: Prof. Dr. Fábio Müller Guerrini</div>
                 </div>
             </div>
         </section>
 
         <section id="experiencia">
             <div class="container">
-                <h2>Experiência</h2>
+                <h2 data-pt="Experiência" data-en="Experience">Experiência</h2>
                 
                 <div class="experience-item">
-                    <div class="period">Fevereiro 2024 - Junho 2024</div>
-                    <h3>Estágio Supervisionado em Docência (PAE)</h3>
-                    <div class="institution">Departamento de Engenharia de Produção - EESC-USP</div>
-                    <p>Desenvolvimento de atividades didáticas na disciplina "SEP0500 - Organização: conceitos, metodologias e modelagem" para alunos de graduação. Carga horária total: 120 horas.</p>
+                    <div class="period" data-pt="Fevereiro 2024 - Junho 2024" data-en="February 2024 - June 2024">Fevereiro 2024 - Junho 2024</div>
+                    <h3 data-pt="Estágio Supervisionado em Docência (PAE)" data-en="Supervised Teaching Internship (PAE)">Estágio Supervisionado em Docência (PAE)</h3>
+                    <div class="institution" data-pt="Departamento de Engenharia de Produção - EESC-USP" data-en="Department of Production Engineering - EESC-USP">Departamento de Engenharia de Produção - EESC-USP</div>
+                    <p data-pt="Desenvolvimento de atividades didáticas na disciplina \"SEP0500 - Organização: conceitos, metodologias e modelagem\" para alunos de graduação. Carga horária total: 120 horas." data-en="Development of teaching assistance activities in the course \"SEP0500 - Organization: concepts, methodologies and modeling\" for undergraduate students. Total workload: 120 hours.">
+                        Desenvolvimento de atividades didáticas na disciplina "SEP0500 - Organização: conceitos, metodologias e modelagem" para alunos de graduação. Carga horária total: 120 horas.
+                    </p>
                 </div>
-
+                <div class="experience-item">
+                    <div class="period" data-pt="Julho 2025 - Novembro 2025 (Em execução)" data-en="July 2025 - November 2025 (Ongoing)">Julho 2025 - Novembro 2025 (Em execução)</div>
+                    <h3 data-pt="Estágio Supervisionado em Docência (PAE)" data-en="Supervised Teaching Internship (PAE)">Estágio Supervisionado em Docência (PAE)</h3>
+                    <div class="institution" data-pt="Departamento de Engenharia de Produção - EESC-USP" data-en="Department of Production Engineering - EESC-USP">Departamento de Engenharia de Produção - EESC-USP</div>
+                    <p data-pt="Desenvolvimento de atividades didáticas na disciplina \"SEP0144 - Introdução à Ciência de Dados e Aprendizado de Máquinas aplicados à Engenharia de Produção\" para alunos de graduação." data-en="Development of teaching assistance activities in the course \"SEP0144 - Introduction to Data Science and Machine Learning applied to Production Engineering\" for undergraduate students.">
+                        Desenvolvimento de atividades didáticas na disciplina "SEP0144 - Introdução à Ciência de Dados e Aprendizado de Máquinas aplicados à Engenharia de Produção" para alunos de graduação.
+                    </p>
+                </div>
             </div>
         </section>
 
         <section id="publicacoes">
             <div class="container">
-                <h2>Publicações</h2>
+                <h2 data-pt="Publicações" data-en="Publications">Publicações</h2>
                 
-                <h3>Artigos em Periódicos</h3>
+                <h3 data-pt="Artigos em Periódicos" data-en="Journal Articles">Artigos em Periódicos</h3>
                 
                 <div class="publication-item">
                     <div class="publication-title">Inter‑organisational Collaboration through Blockchain Governance and Smart Contracts: A Design Science Research Approach</div>
@@ -439,7 +511,7 @@
                     <div class="doi">DOI: 10.1016/j.jisa.2024.103837</div>
                 </div>
 
-                <h3>Conferências e Workshops</h3>
+                <h3 data-pt="Conferências e Workshops" data-en="Conferences and Workshops">Conferências e Workshops</h3>
                 
                 <div class="publication-item">
                     <div class="publication-title">A Blockchain‑based Reputation System for Trust Management in Collaborative Multi‑Stakeholder Settings</div>
@@ -447,81 +519,84 @@
                     <div class="publication-details"><em>Workshop em Blockchain: Teoria, Tecnologias e Aplicações (WBLOCKCHAIN)</em>, Niterói/RJ</div>
                     <div class="doi">DOI: 10.5753/wblockchain.2024.3258</div>
                 </div>
+
+                <div class="publication-item">
+                    <div class="publication-title">Promoting ESG Performance in Collaborative Networks: A Systematic Literature Review</div>
+                    <div class="publication-details">de Miranda, L. M. B., Garcia, Guerrini, F. M. & G. S., Ueyama (2025)</div>
+                    <div class="publication-details" data-pt="Aceito em 26th IFIP/SOCOLNET Working Conference on Virtual Enterprises, Porto/Portugal" data-en="Accepted at 26th IFIP/SOCOLNET Working Conference on Virtual Enterprises, Porto/Portugal"><em>Aceito em 26th IFIP/SOCOLNET Working Conference on Virtual Enterprises</em>, Porto/Portugal</div>
+                </div>
             </div>
         </section>
 
         <section id="indicadores">
             <div class="container">
-                <h2>Indicadores Quantitativos</h2>
+                <h2 data-pt="Indicadores Quantitativos" data-en="Quantitative Metrics">Indicadores Quantitativos</h2>
                 <div class="stats-grid">
                     <div class="stat-card">
                         <span class="stat-number">2</span>
-                        <div class="stat-label">Artigos em Periódicos</div>
+                        <div class="stat-label" data-pt="Artigos em Periódicos" data-en="Journal Articles">Artigos em Periódicos</div>
                     </div>
                     <div class="stat-card">
                         <span class="stat-number">1</span>
-                        <div class="stat-label">Artigos em Conferências</div>
+                        <div class="stat-label" data-pt="Artigos em Conferências" data-en="Conference Papers">Artigos em Conferências</div>
                     </div>
                     <div class="stat-card">
                         <span class="stat-number">1</span>
-                        <div class="stat-label">Dissertação Defendida</div>
+                        <div class="stat-label" data-pt="Dissertação Defendida" data-en="Defended Dissertation">Dissertação Defendida</div>
                     </div>
                     <div class="stat-card">
                         <span class="stat-number">3</span>
-                        <div class="stat-label">Citações (Google Scholar)</div>
+                        <div class="stat-label" data-pt="Citações (Google Scholar)" data-en="Citations (Google Scholar)">Citações (Google Scholar)</div>
                     </div>
-                    
                 </div>
             </div>
         </section>
 
         <section id="noticias">
             <div class="container">
-                <h2>Últimas Notícias e Reconhecimentos</h2>
+                <h2 data-pt="Últimas Notícias e Reconhecimentos" data-en="Latest News and Recognition">Últimas Notícias e Reconhecimentos</h2>
                 <div class="news-grid">
                     <div class="news-item">
                         <div class="news-date">2025</div>
-                        <div class="news-title">Indicação para Prêmio ABEPRO</div>
-                        <div class="news-content">
+                        <div class="news-title" data-pt="Indicação para Prêmio ABEPRO" data-en="ABEPRO Award Nomination">Indicação para Prêmio ABEPRO</div>
+                        <div class="news-content" data-pt="Dissertação de mestrado indicada pelo Programa de Pós-Graduação em Engenharia de Produção da EESC-USP para concorrer ao Prêmio ABEPRO na categoria Mestrado Acadêmico (Edital 2025)." data-en="Master's dissertation nominated by the Graduate Program in Production Engineering at EESC-USP to compete for the ABEPRO Award in the Academic Master's category (2025 Call).">
                             Dissertação de mestrado indicada pelo Programa de Pós-Graduação em Engenharia de Produção da EESC-USP para concorrer ao Prêmio ABEPRO na categoria Mestrado Acadêmico (Edital 2025).
                         </div>
                     </div>
 
                     <div class="news-item">
                         <div class="news-date">2024</div>
-                        <div class="news-title">Certificado "Discente-Trabalho Destaque do Programa"</div>
-                        <div class="news-content">
+                        <div class="news-title" data-pt="Certificado \"Discente-Trabalho Destaque do Programa\"" data-en="\"Outstanding Student Work\" Certificate">Certificado "Discente-Trabalho Destaque do Programa"</div>
+                        <div class="news-content" data-pt="Distinção acadêmica recebida no IX EPPGEP (2024) da ANPEPRO na categoria de Mestrado Acadêmico, por apresentação sobre \"Blockchain Governance in Creating Virtual Enterprises: An Enterprise Modeling Approach\"." data-en="Academic distinction received at IX EPPGEP (2024) by ANPEPRO in the Academic Master's category, for presentation on \"Blockchain Governance in Creating Virtual Enterprises: An Enterprise Modeling Approach\".">
                             Distinção acadêmica recebida no IX EPPGEP (2024) da ANPEPRO na categoria de Mestrado Acadêmico, por apresentação sobre "Blockchain Governance in Creating Virtual Enterprises: An Enterprise Modeling Approach".
                         </div>
                     </div>
 
                     <div class="news-item">
                         <div class="news-date">2025</div>
-                        <div class="news-title">Divulgação no Jornal da USP</div>
-                        <div class="news-content">
+                        <div class="news-title" data-pt="Divulgação no Jornal da USP" data-en="Featured in USP Newspaper">Divulgação no Jornal da USP</div>
+                        <div class="news-content" data-pt="Pesquisa de mestrado destacada no Jornal da USP, evidenciando a aplicação da tecnologia blockchain em esforços colaborativos entre empresas." data-en="Master's research featured in USP Newspaper, highlighting the application of blockchain technology in collaborative efforts between companies.">
                             Pesquisa de mestrado destacada no Jornal da USP, evidenciando a aplicação da tecnologia blockchain em esforços colaborativos entre empresas.
                         </div>
-                        <a href="https://jornal.usp.br/ciencias/tecnologia-blockchain-ajuda-a-organizar-esforcos-colaborativos-entre-empresas/" class="news-link" target="_blank">Ver matéria →</a>
+                        <a href="https://jornal.usp.br/ciencias/tecnologia-blockchain-ajuda-a-organizar-esforcos-colaborativos-entre-empresas/" class="news-link" target="_blank" data-pt="Ver matéria →" data-en="Read article →">Ver matéria →</a>
                     </div>
 
                     <div class="news-item">
                         <div class="news-date">2025</div>
-                        <div class="news-title">Divulgação no Portal da EESC</div>
-                        <div class="news-content">
+                        <div class="news-title" data-pt="Divulgação no Portal da EESC" data-en="Featured on EESC Portal">Divulgação no Portal da EESC</div>
+                        <div class="news-content" data-pt="Pesquisa de mestrado destacada no Portal da EESC, evidenciando a contribuição da pesquisa." data-en="Master's research featured on the EESC Portal, highlighting the research contribution.">
                             Pesquisa de mestrado destacada no Portal da EESC, evidenciando a contribuição da pesquisa.
                         </div>
-                        <a href="https://eesc.usp.br/noticias/comunicados_s.php?guid=tecnologia-blockchain-ajuda-a-regular-e-organizar-esforcos-colaborativos-entre-empresas&termid=todos" class="news-link" target="_blank">Ver matéria →</a>
+                        <a href="https://eesc.usp.br/noticias/comunicados_s.php?guid=tecnologia-blockchain-ajuda-a-regular-e-organizar-esforcos-colaborativos-entre-empresas&termid=todos" class="news-link" target="_blank" data-pt="Ver matéria →" data-en="Read article →">Ver matéria →</a>
                     </div>
-
 
                     <div class="news-item">
                         <div class="news-date">2025</div>
-                        <div class="news-title">Apresentação no 1º Encontro da Pós-Graduação EESC-USP</div>
-                        <div class="news-content">
+                        <div class="news-title" data-pt="Apresentação no 1º Encontro da Pós-Graduação EESC-USP" data-en="Presentation at 1st EESC-USP Graduate Meeting">Apresentação no 1º Encontro da Pós-Graduação EESC-USP</div>
+                        <div class="news-content" data-pt="Trabalho apresentado como pôster no 1º Encontro da Pós-Graduação da EESC-USP com o tema \"Construindo o Futuro da Pós-Graduação: Desafios e Oportunidades\"." data-en="Poster presented at the 1st EESC-USP Graduate Meeting with the theme \"Building the Future of Graduate Studies: Challenges and Opportunities\".">
                             Trabalho apresentado como pôster no 1º Encontro da Pós-Graduação da EESC-USP com o tema "Construindo o Futuro da Pós-Graduação: Desafios e Oportunidades".
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -534,7 +609,30 @@
     </footer>
 
     <script>
-        // Navegação suave
+        // Language switching functionality
+        function switchLanguage(lang) {
+            const elements = document.querySelectorAll('[data-pt][data-en]');
+            const buttons = document.querySelectorAll('.language-btn');
+            
+            elements.forEach(element => {
+                if (lang === 'pt') {
+                    element.textContent = element.getAttribute('data-pt');
+                } else {
+                    element.textContent = element.getAttribute('data-en');
+                }
+            });
+            
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            document.getElementById(`btn-${lang}`).classList.add('active');
+            
+            // Update document language
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+        }
+
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -548,12 +646,12 @@
             });
         });
 
-        // Atualizar link ativo na navegação
+        // Update active navigation link on scroll
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.nav-links a');
-            
             let current = '';
+
             sections.forEach(section => {
                 const sectionTop = section.offsetTop - 100;
                 if (scrollY >= sectionTop) {
